@@ -19,6 +19,7 @@ class CircleTest(unittest.TestCase):
         """create circles before each test"""
         self.circle_five = Circle(5)
         self.circle_ten = Circle(10)
+        self.circle_zero = Circle(0)
 
     def test_add_area_positive(self):
         """add_area return a new circle whose area equal to the combined of two circles"""
@@ -27,3 +28,11 @@ class CircleTest(unittest.TestCase):
                          new_circle.get_area())
         self.assertEqual(math.hypot(self.circle_five.get_radius(),self.circle_ten.get_radius()),
                          new_circle.get_radius())
+
+    def test_add_area_zero(self):
+        """if one of the circles has radius of 0, add_area return a new circle which has
+        the same area and radius as the non-zero ones.
+        """
+        new_circle = self.circle_five.add_area(self.circle_zero)
+        self.assertEqual(self.circle_five.get_area(), new_circle.get_area())
+        self.assertEqual(self.circle_five.get_radius(), new_circle.get_radius())
