@@ -36,3 +36,8 @@ class CircleTest(unittest.TestCase):
         new_circle = self.circle_five.add_area(self.circle_zero)
         self.assertEqual(self.circle_five.get_area(), new_circle.get_area())
         self.assertEqual(self.circle_five.get_radius(), new_circle.get_radius())
+
+    def test_create_negative_radius_circle(self):
+        """Circle can't have negative radius"""
+        with self.assertRaises(ValueError):
+            negative_circle = Circle(-99)
