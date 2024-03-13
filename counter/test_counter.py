@@ -34,4 +34,10 @@ class CounterTest(unittest.TestCase):
        self.counter_2.increment()
        self.assertEqual(2, self.counter_1.count)
        self.assertEqual(self.counter_1.count, self.counter_2.count)
-   
+
+    def test_creating_after_increment(self):
+       """Counter's count remain the same after invoking."""
+       self.counter_1.increment()
+       new_counter = Counter()
+       self.assertEqual(id(self.counter_1), id(new_counter))
+       self.assertEqual(self.counter_1.count, new_counter.count)
