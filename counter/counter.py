@@ -13,11 +13,14 @@ class Counter:
     _instance = None
 
     def __init__(self):
-        self.__count = 0
+        if not self.__initilized:
+            self.__initilized = True
+            self.__count = 0
 
     def __new__(cls, *args, **kwargs):
         if not cls._instance:
             cls._instance = super().__new__(cls, *args, **kwargs)
+            cls._instance.__initilized = False
         return cls._instance
 
     def __str__(self):
