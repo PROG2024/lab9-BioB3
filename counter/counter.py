@@ -29,4 +29,4 @@ class Counter:
 
     def increment(self):
         self.__count += 1
-        return self.count()
+        return self.count
