@@ -10,13 +10,23 @@
 """
 
 class Counter:
+    _instance = None
 
     def __init__(self):
         self.__count = 0
 
+    def __new__(cls, *args, **kwargs):
+        if not cls._instance:
+            cls._instance = super().__new__(*args, **kwargs)
+        return cls._instance
 
     def __str__(self):
         return f"{self.__count}"
 
-    #TODO write count property
-    #TODO write increment method
+    @property
+    def count(self):
+        return self.__count
+
+    def increment(self):
+        self.__count += 1
+        return self.count()
